@@ -1,12 +1,8 @@
-from bs4 import BeautifulSoup as soup
-import request
 
-url = r'https://www.bbc.co.uk/news'
-req = urllib.request(url)
-
-with request.urlopen(req) as r:
-	soup = r.read()
-
-title = soup.title.string
+from bs4 import BeautifulSoup
+import requests
+url=r'https://www.bbc.co.uk/news'
+r=requests.get(url)
+soup = BeautifulSoup(r.text, 'html.parser')
+title = soup.find('title')
 print(title)
-
